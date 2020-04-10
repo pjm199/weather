@@ -1,7 +1,7 @@
 body {
     color: #333333;
     font-family: arial;
-    max-width: 650px;
+    
     margin: 0 auto;
     padding: 0 16px;
 
@@ -22,8 +22,8 @@ footer {
 }
 
 header {
-    margin-top: 16px;
-    margin-bottom: 48px;
+    margin-top: 10px;
+    margin-bottom: 24px;
 }
 
 h1 {
@@ -51,9 +51,9 @@ button {
     padding: 8px;
 }
 p {
-    width: 200; height: 30;
+    width: 300; height: 30;
     border: 1px solid #efefef;
-    background: #0000ff;
+    background: #0000aa;
     color: white;
     padding: 8px;
 }

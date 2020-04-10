@@ -1,3 +1,5 @@
+const port = process.env.PORT || 3000
+
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
@@ -136,6 +138,6 @@ app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
   });
-app.listen(3333, () => {
-    console.log('Server up on port 3333')
+app.listen(port, () => {
+    console.log('Server up on port :'+ port)
 })

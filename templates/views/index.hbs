@@ -10,13 +10,13 @@
     <title>Weather</title>
 </head>
 <body>
+    {{>header}}
     <div class="main-content">
 
-        {{>header}}
-        <h2>{{title}}</h2>
-        <p>Use this site to get your weather !</p>
-        <form>
-            <input placeholder="location">
+        {{!-- <h2>{{title}}</h2> --}}
+        <p>Cerca il meteo della tua citta</p>
+        <form >
+            <input placeholder="location" style="width: 250; height:40">
             <button>Search</button>
         </form>
 
