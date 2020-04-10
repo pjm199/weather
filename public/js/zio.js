@@ -15,6 +15,7 @@ weatherForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const location = search.value
+
     messageOne.textContent = 'Loading ....'
     messageTwo.textContent = 'zio porco'
 
@@ -27,9 +28,16 @@ weatherForm.addEventListener('submit', (e) => {
                 console.log(data.error)
             } else {
                 messageOne.textContent = data.location
-                messageTwo.textContent = data.forecast.data
+                //messageTwo.textContent = data.forecast.data
+                var st = data.forecast.tutto.hourly[1].dt
+                var ddt = new Date(st)
+                console.log('Descrizione Pino :' )
+                messageTwo.textContent = data.forecast.tutto.current.temp + ' '
+                messageTwo.textContent += data.forecast.tutto.current.weather[0].main +', '
+                messageTwo.textContent += data.forecast.tutto.current.weather[0].description + ' '
+                messageTwo.textContent += st
                 console.log(data.longitude,' ',  data.latitudine)
-                console.log(data)
+                //console.log(data)
 
                 L.mapbox.accessToken = 'pk.eyJ1Ijoiam0xOTkiLCJhIjoiY2s4cDAyc3lqMDA2MjNlbzN4NmpxYW4xMiJ9.wvD_eKRXX2kzgs44yaUklg';
 		        const map = L.mapbox.map('map')

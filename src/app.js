@@ -12,11 +12,11 @@ const request = require('postman-request')
 const publicDirPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
-
+//const descrizione = ''
 // ------------------
 // Goecode function()
 // ------------------
-const  geocode = (address, callback) => {
+const geocode = (address, callback) => {
 
     //console.log(address)
     const geourl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(address) +'.json?access_token=pk.eyJ1Ijoiam0xOTkiLCJhIjoiY2s4cDAyc3lqMDA2MjNlbzN4NmpxYW4xMiJ9.wvD_eKRXX2kzgs44yaUklg'
@@ -28,6 +28,7 @@ const  geocode = (address, callback) => {
             callback('Unable to find location', undefined)
         } else {
             callback(undefined, {
+                data: response.body,
                 latitude: response.body.features[0].center[0],
                 longitude: response.body.features[0].center[1],
                 location: response.body.features[0].place_name
@@ -51,7 +52,9 @@ const forecast = (lat, lon, callback) => {
             callback('Coordinate non correte!', undefined)
         } else {
             callback(undefined, {
-                data: response.body.current.weather[0].main
+                tutto: response.body,
+                main: response.body.current.weather[0].main,
+                //desc: response.body.current.weather[0].description
             })
         }
     })
@@ -94,7 +97,7 @@ app.get('/weather', (req, res) => {
         })
     }
     //console.log(req.query)
-    geocode(req.query.address, (error, { latitude, longitude, location} = {}) => {
+    geocode(req.query.address, (error, { latitude, longitude, location, main} = {}) => {
         if(error) {
             return res.send({ error })
         }
@@ -103,14 +106,21 @@ app.get('/weather', (req, res) => {
                 return res.send({ error })
             }
             res.send({
+                //data: data,
+                //tutto: tutto,
                 forecast: forecastData,
                 location: location,
                 address: req.query.address,
                 latitudine: latitude,
-                longitude: longitude
+                longitude: longitude,
+                //zione: main + ' ' + 'fa freddo zio'
+                
             })
+            
         })
+        //console.log('2 :' + zione)
     })
+    //console.log('3 :' + zione)
 })
 
 app.get('/products', (req, res) => {
